@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+}
+
+#start {
+    padding: 10px 25px;
+}
+
+.grid {
+    height: 500px;
+    width: 500px;
+    border: 2px solid black;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* overflow:hidden; */
+}
+
+.grid .square {
+    height: 50px;
+    width: 50px;
+    /* border: 1px solid black; */
+}
+
+.snake {
+    background-color: green;
+}
+
+.apple {
+    background-color: red;
+}
