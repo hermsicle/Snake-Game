@@ -21,6 +21,18 @@ body {
 .container h1{
     font-size: 3.5rem;
 }
+
+.modes button {
+    padding: 5px 10px;
+    background-color: darkslategrey;
+    border: none;
+    color: white;
+    font-family: langar;
+    margin: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
 #start {
     padding: 10px 25px;
     color: darkslategray;
@@ -30,6 +42,7 @@ body {
     outline: none;
     margin: 10px;
     font-family: langar;
+    cursor: pointer;
 }
 .grid {
     height: 400px;
@@ -49,8 +62,11 @@ body {
     transition: transform 300ms linear;
 }
 .apple {
-    background-color: red;
-    border-radius: 50%;
+    /* background-color: red; */
+    background: url('../photos/apple.png');
+    /* border-radius: 50%; */
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 @media only screen and (max-width: 800px) {
     .container h1 {
