@@ -10,7 +10,7 @@ let currentSnake = [2, 1, 0];
 let direction = 1;  //We will use this direction to move our snake
 
 //Create a width = 10 because that is the length of our grid
-const width = 10;
+const width = 20;
 
 //Create a appleIndex variable and declare it as 0
 let appleIndex = 0;
@@ -21,7 +21,7 @@ let speed = 0.9;
 let timerId;
 
 const createGrid = () => {
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 200; i++) {
         const square = document.createElement('div');
         square.classList.add('square')
         grid.appendChild(square)
@@ -39,16 +39,16 @@ const move = () => {
     //Create our conditional statement that checks whether or not our snakehead Hits a wall
     if(
         //Check if the snake has hit the bottom wall
-        (currentSnake[0] + 10 >= 100 && direction === 10) ||
+        (currentSnake[0] + width >= width*width && direction === width) ||
 
         //Check if the snake has hit the top wall
-        (currentSnake[0] - 10 < 0 && direction === -10) ||
+        (currentSnake[0] - width < 0 && direction === -width) ||
 
         //Check if the snake has hit the right wall
-        (currentSnake[0] % 10 === 9 && direction === 1) ||
+        (currentSnake[0] % width === width-1 && direction === 1) ||
 
         //Check if the snake has hit the left wall
-        (currentSnake[0] % 10 === 0 && direction === -1) ||
+        (currentSnake[0] % width === 0 && direction === -1) ||
 
         //Check if the snake has run into itself
         squares[currentSnake[0] + direction].classList.contains('snake')
