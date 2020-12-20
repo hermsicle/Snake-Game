@@ -15,7 +15,7 @@ const width = 20;
 //Create a appleIndex variable and declare it as 0
 let appleIndex = 0;
 let userScore = 0;
-let intervalTime = 800;
+let intervalTime = 500;
 let speed = 0.9;
 
 let timerId;
@@ -138,7 +138,7 @@ const gameStart = () => {
     score.textContent = userScore;
 
     direction = 1;
-    intervalTime = 800;
+    intervalTime = 500;
     generateApple();
 
     timerId = setInterval(move, intervalTime)

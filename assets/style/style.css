@@ -2,42 +2,64 @@
     padding: 0;
     margin: 0;
     /* box-sizing: border-box; */
+    /* font-family: langar; */
+    font-family: 'Bungee Outline', cursive;
 }
-
 body {
-    background-color: darkslategray;
+    background-color: darkslateblue;
 }
-
 .container {
     text-align: center;
-    margin: 10px;
+    margin: 25px;
     color: white;
 }
-
+.container h1{
+    font-size: 3.5rem;
+}
 #start {
     padding: 10px 25px;
+    color: darkslategray;
+    background-color: darkslategrey;
+    color: white;
+    border: none;
+    outline: none;
+    margin: 10px;
+    font-family: langar;
 }
-
 .grid {
     height: 400px;
     width: 800px;
-    border: 2px solid black;
+    border: 2px solid white;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    background-color: darkslategrey;
 }
-
 .grid .square {
     height: 40px;
     width: 40px;
 }
-
 .snake {
     background-color: steelblue;
     transition: transform 300ms linear;
 }
-
 .apple {
     background-color: red;
     border-radius: 50%;
+}
+@media only screen and (max-width: 800px) {
+    .container h1 {
+        font-size: 1.5rem;
+    }
+    #start {
+        padding: 5px 10px;
+    }
+    .grid {
+        height: 200px;
+        width: 400px;
+    }
+    .grid .square {
+        height: 20px;
+        width: 20px;
+    }
 }
