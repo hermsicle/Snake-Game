@@ -22,16 +22,38 @@ body {
     font-size: 3.5rem;
 }
 
-.modes button {
+.modes {
+    margin: 0 auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.modes h3 {
+    font-family: langar;
+    margin-bottom: 10px;
+}
+
+.btn {
     padding: 5px 10px;
     background-color: darkslategrey;
     border: none;
     color: white;
     font-family: langar;
-    margin: 10px;
+    margin: 0 10px;
     cursor: pointer;
     outline: none;
 }
+
+.btn:hover {
+    background-color: white;
+    color: darkslategrey;
+}
+
+.btn.active {
+    background-color: white;
+    color: darkslategrey;
+}
+
 
 #start {
     padding: 10px 25px;
@@ -62,9 +84,7 @@ body {
     transition: transform 300ms linear;
 }
 .apple {
-    /* background-color: red; */
     background: url('../photos/apple.png');
-    /* border-radius: 50%; */
     background-repeat: no-repeat;
     background-size: contain;
 }

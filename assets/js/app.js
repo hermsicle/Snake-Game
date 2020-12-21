@@ -2,6 +2,24 @@ const score = document.querySelector('#score');
 const startButton = document.querySelector('#start');
 const grid = document.querySelector('.grid');
 
+const easyModeButton = document.querySelector('#easyButton');
+const mediumModeButton = document.querySelector('#mediumButton');
+const hardModeButton = document.querySelector('#hardButton');
+const btns = document.getElementsByClassName('btn');
+
+for(let i = 0; i < btns.length; i++){
+    btns[i].addEventListener('click' , () => {
+        if(btns[i].classList.contains('active')){
+            btns[i].classList.remove('active');
+            btns[i].classList.add('btn')
+            console.log(btns[i])
+        } else {
+            btns[i].classList.add('active')
+            console.log(btns[i])
+        }
+    })
+}
+
 let squares = [];
 
 let currentSnake = [2, 1, 0];
@@ -71,12 +89,9 @@ const move = () => {
         //Grow our snake 
         squares[tail].classList.add('snake')
         currentSnake.push(tail)
-        //Generate a new apple
         generateApple();
-        //Score ++
         userScore++;
         score.textContent = userScore;
-        //Speed up our snake
         clearInterval(timerId)
         //Increase the time
         intervalTime = intervalTime * speed;
@@ -118,29 +133,75 @@ const generateApple = () => {
 }
 generateApple();
 
+const easyMode = () => {
+        currentSnake.forEach(index => {
+            squares[index].classList.remove('snake')
+        })
+        squares[appleIndex].classList.remove('apple')
+        clearInterval(timerId)
+        currentSnake = [2, 1, 0]
+        currentSnake.forEach(index => {
+            squares[index].classList.add('snake')
+        })
+        userScore = 0;
+        score.textContent = userScore;
+    
+        direction = 1;
+        intervalTime = 500;
+        generateApple();
+    
+        timerId = setInterval(move, intervalTime)
+}
 
-//Create logic for start/restart button
-const gameStart = () => {
-    //remove the snake
+const mediumMode = () => {
     currentSnake.forEach(index => {
         squares[index].classList.remove('snake')
     })
-    //remove the apple
     squares[appleIndex].classList.remove('apple')
-    //Clear the current Interval
     clearInterval(timerId)
     currentSnake = [2, 1, 0]
     currentSnake.forEach(index => {
         squares[index].classList.add('snake')
     })
-    //Reset the score 
     userScore = 0;
     score.textContent = userScore;
 
     direction = 1;
-    intervalTime = 500;
+    intervalTime = 300;
     generateApple();
 
     timerId = setInterval(move, intervalTime)
 }
-startButton.addEventListener('click', gameStart)
+
+const hardMode = () => {
+    currentSnake.forEach(index => {
+        squares[index].classList.remove('snake')
+    })
+    squares[appleIndex].classList.remove('apple')
+    clearInterval(timerId)
+    currentSnake = [2, 1, 0]
+    currentSnake.forEach(index => {
+        squares[index].classList.add('snake')
+    })
+    userScore = 0;
+    score.textContent = userScore;
+
+    direction = 1;
+    intervalTime = 100;
+    generateApple();
+
+    timerId = setInterval(move, intervalTime)
+}
+
+startButton.addEventListener('click' , () => {
+    if(easyModeButton.classList.contains('active')){
+        console.log('easy mode selected')
+        easyMode();
+    } else if(mediumModeButton.classList.contains('active')) {
+        console.log('Medium Mode selcted')
+        mediumMode();
+    } else if(hardModeButton.classList.contains('active')) {
+        console.log('Hard Mode Selected')
+        hardMode();
+    }
+})
