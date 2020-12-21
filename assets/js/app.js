@@ -6,19 +6,7 @@ const easyModeButton = document.querySelector('#easyButton');
 const mediumModeButton = document.querySelector('#mediumButton');
 const hardModeButton = document.querySelector('#hardButton');
 const btns = document.getElementsByClassName('btn');
-
-for(let i = 0; i < btns.length; i++){
-    btns[i].addEventListener('click' , () => {
-        if(btns[i].classList.contains('active')){
-            btns[i].classList.remove('active');
-            btns[i].classList.add('btn')
-            console.log(btns[i])
-        } else {
-            btns[i].classList.add('active')
-            console.log(btns[i])
-        }
-    })
-}
+const modes = document.querySelector('.modes');
 
 let squares = [];
 
@@ -133,27 +121,28 @@ const generateApple = () => {
 }
 generateApple();
 
-const easyMode = () => {
-        currentSnake.forEach(index => {
-            squares[index].classList.remove('snake')
-        })
-        squares[appleIndex].classList.remove('apple')
-        clearInterval(timerId)
-        currentSnake = [2, 1, 0]
-        currentSnake.forEach(index => {
-            squares[index].classList.add('snake')
-        })
-        userScore = 0;
-        score.textContent = userScore;
-    
-        direction = 1;
-        intervalTime = 500;
-        generateApple();
-    
-        timerId = setInterval(move, intervalTime)
+const toggleActive = () => {
+    for(let i = 0; i < btns.length; i++){
+        if(btns[i].classList.contains('active')){
+            btns[i].classList.remove('active')
+        }
+    }
 }
 
-const mediumMode = () => {
+easyModeButton.addEventListener('click', () => {
+    toggleActive();
+    easyModeButton.classList.add('active');
+})
+mediumModeButton.addEventListener('click', () => {
+    toggleActive();
+    mediumModeButton.classList.add('active');
+})
+hardModeButton.addEventListener('click', () => {
+    toggleActive();
+    hardModeButton.classList.add('active');
+})
+
+const gameSetUp = () => {
     currentSnake.forEach(index => {
         squares[index].classList.remove('snake')
     })
@@ -165,31 +154,27 @@ const mediumMode = () => {
     })
     userScore = 0;
     score.textContent = userScore;
-
     direction = 1;
+}
+
+const easyMode = () => {
+    gameSetUp();
+    intervalTime = 500;
+    generateApple();
+    timerId = setInterval(move, intervalTime)
+}
+
+const mediumMode = () => {
+    gameSetUp();
     intervalTime = 300;
     generateApple();
-
     timerId = setInterval(move, intervalTime)
 }
 
 const hardMode = () => {
-    currentSnake.forEach(index => {
-        squares[index].classList.remove('snake')
-    })
-    squares[appleIndex].classList.remove('apple')
-    clearInterval(timerId)
-    currentSnake = [2, 1, 0]
-    currentSnake.forEach(index => {
-        squares[index].classList.add('snake')
-    })
-    userScore = 0;
-    score.textContent = userScore;
-
-    direction = 1;
+    gameSetUp();
     intervalTime = 100;
     generateApple();
-
     timerId = setInterval(move, intervalTime)
 }
 
@@ -203,5 +188,7 @@ startButton.addEventListener('click' , () => {
     } else if(hardModeButton.classList.contains('active')) {
         console.log('Hard Mode Selected')
         hardMode();
+    } else {
+        alert('Please Select A Mode')
     }
 })
